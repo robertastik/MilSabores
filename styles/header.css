@@ -1,0 +1,37 @@
+@font-face {
+  font-family: 'Familjen Grotesk';
+  src: url('../font/FamiljenGrotesk-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Familjen Grotesk Bold';
+  src: url('../font/FamiljenGrotesk-Bold.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Familjen Grotesk Italic';
+  src: url('../font/FamiljenGrotesk-Italic.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Familjen Grotesk';
+}
+
+header {
+    color: #FEFAE0;
+    background-color: #DDA15E;
+    padding: 1.5rem;
+}
+
+.titulo-header {
+    font-family: 'Familjen Grotesk Bold';
+    font-size: 2.5rem;
+}
