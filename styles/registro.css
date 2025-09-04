@@ -1,0 +1,22 @@
+@font-face {
+    font-family: Lato-Regular;
+    src: url('../font/Lato-Regular.ttf');
+    font-weight: 400;
+  }
+  
+  @font-face {
+    font-family: Pacifico-Regular;
+    src: url('../font/Pacifico-Regular.ttf');
+    font-weight: 400;
+  }
+  
+  * {
+      margin: 0;
+      padding: 0;
+      color: #5D4037;
+      box-sizing: border-box;
+  }
+  
+  body {
+    background-color: #FFF5E1;
+  }
