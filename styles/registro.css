@@ -2,21 +2,126 @@
     font-family: Lato-Regular;
     src: url('../font/Lato-Regular.ttf');
     font-weight: 400;
-  }
+}
   
-  @font-face {
-    font-family: Pacifico-Regular;
-    src: url('../font/Pacifico-Regular.ttf');
-    font-weight: 400;
-  }
-  
-  * {
-      margin: 0;
-      padding: 0;
-      color: #5D4037;
-      box-sizing: border-box;
-  }
-  
-  body {
-    background-color: #FFF5E1;
-  }
+@font-face {
+  font-family: Pacifico-Regular;
+  src: url('../font/Pacifico-Regular.ttf');
+  font-weight: 400;
+}
+      
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+background-color: #FFF5E1;
+color: #5D4037;
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+font-family: "Lato-Regular";
+}
+
+main {
+flex: 1;
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 2rem;
+}
+
+.register-container {
+background-color: white;
+border-radius: 10px;
+box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+padding: 2rem;
+width: 100%;
+max-width: 450px;
+}
+
+.register-container h2 {
+text-align: center;
+margin-bottom: 1.5rem;
+color: #5D4037;
+font-family: 'Pacifico-Regular';
+font-size: 3rem;
+}
+
+.form-group {
+margin-bottom: 1.5rem;
+}
+
+.form-group label {
+display: block;
+margin-bottom: 0.5rem;
+font-weight: 500;
+}
+
+.form-group input {
+width: 100%;
+padding: 0.75rem;
+border: 1px solid #ddd;
+border-radius: 5px;
+font-size: 1rem;
+}
+
+.form-row {
+display: flex;
+gap: 1rem;
+}
+
+.form-row .form-group {
+flex: 1;
+}
+
+.btn {
+width: 100%;
+padding: 0.75rem;
+background-color: #FFC0CB;
+color: #5D4037;
+border: none;
+border-radius: 5px;
+font-size: 1rem;
+cursor: pointer;
+transition: background-color 0.3s;
+font-family: 'Lato-Regular';
+}
+
+.btn:hover {
+background-color: #ffa5b4;
+}
+
+.register-links {
+margin-top: 1.5rem;
+text-align: center;
+}
+
+.register-links a {
+color: #5D4037;
+text-decoration: none;
+font-family: 'Lato-Regular';
+}
+
+.register-links a:hover {
+text-decoration: underline;
+}
+
+.terms {
+margin-bottom: 1.5rem;
+font-size: 0.9rem;
+}
+
+.terms input {
+margin-right: 0.5rem;
+}
+
+footer {
+background-color: #FFC0CB;
+color: #5D4037;
+text-align: center;
+padding: 1rem;
+font-family: 'Lato-Regular';
+}

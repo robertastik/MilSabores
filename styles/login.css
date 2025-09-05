@@ -1,0 +1,109 @@
+@font-face {
+    font-family: Lato-Regular;
+    src: url('../font/Lato-Regular.ttf');
+    font-weight: 400;
+  }
+  
+@font-face {
+  font-family: Pacifico-Regular;
+  src: url('../font/Pacifico-Regular.ttf');
+  font-weight: 400;
+}
+  
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Lato-Regular";
+}
+
+body {
+  background-color: #FFF5E1;
+  color: #5D4037;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.login-container {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #5D4037;
+  font-family: 'Pacifico-Regular';
+  font-size: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.btn {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #FFC0CB;
+  color: #5D4037;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-family: 'Lato-Regular';
+}
+
+.btn:hover {
+  background-color: #ffa5b4;
+}
+
+.login-links {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.login-links a {
+  color: #5D4037;
+  text-decoration: none;
+  font-family: 'Lato-Regular';
+}
+
+.login-links a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  background-color: #FFC0CB;
+  color: #5D4037;
+  padding: 1rem;
+  text-align: center;
+  font-family: 'Lato-Regular';
+}
