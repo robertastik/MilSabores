@@ -1,55 +1,25 @@
-<style>
-@font-face {
-  font-family: Lato-Regular;
-  src: url('/font/Lato-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: Pacifico-Regular;
-  src: url('/font/Pacifico-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-display: swap;
-}
-
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 1.5rem;
-  font-family: 'Lato-Regular';
-  background-color: #FFC0CB;
-}
-
-.titulo-header span {
-  font-size: 3rem;
-  font-family: 'Pacifico-Regular' !important;
-}
-
-.titulo-header a {
-  text-decoration: none;
-  color: #5D4037;
-}
-
-.registro a {
-  margin-right: 1.5rem;
-  cursor: pointer;
-  font-size: 16px;
-  text-decoration: none;
-  color: #5D4037;
-}
-
-.registro a:hover {
-  text-decoration: underline;
-}
 </style>
 <header>
     <div class="titulo-header">
         <span><a href="index.html">Mil Sabores</a></span>
     </div>
-    <div class="registro">
-        <a href="login.html">Iniciar Sesión</a>
-        <a href="registrarse.html">Registrarse</a>
+    
+    <div class="navegacion-header">
+      <a href="">Productos</a>
+      <a href="">Sobre Nosotros</a>
+      <a href="">Contacto</a>
+    </div>
+
+    <div class="acciones">
+        <div class="registro">
+            <img src="../images/user.png" alt="" class="user-icon">
+            <div class="dropdown-content">
+                <a href="login.html">Iniciar Sesión</a>
+                <a class="reg-style" href="registrarse.html">Registrarse</a>
+            </div>
+        </div>
+        <div class="carrito">
+            <img src="../images/cart.png" alt="">
+        </div>
     </div>
 </header>
