@@ -1,0 +1,17 @@
+@font-face {
+    font-family: Lato-Regular;
+    src: url('../font/Lato-Regular.ttf');
+    font-weight: 400;
+  }
+
+
+.hero-main img {
+    width: 100%;
+    height: 600px;
+    display: flex;
+    object-fit: cover;
+}
+
+main {
+    font-family: Lato-Regular;
+}

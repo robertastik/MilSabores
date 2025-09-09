@@ -1,6 +1,6 @@
 function loadHeader() {
     const headerPlaceholder = document.getElementById('header-placeholder');
-    
+
     if (headerPlaceholder) {
         fetch('components/header.html')
             .then(response => {
@@ -28,6 +28,15 @@ function loadHeader() {
                                 dropdownContent.classList.remove('show');
                             }
                         }
+                    });
+                }
+
+                const hamburgerMenu = document.querySelector('.hamburger-menu');
+                const navegacionHeader = document.querySelector('.navegacion-header');
+
+                if (hamburgerMenu && navegacionHeader) {
+                    hamburgerMenu.addEventListener('click', () => {
+                        navegacionHeader.classList.toggle('show');
                     });
                 }
             })

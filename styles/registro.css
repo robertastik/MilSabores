@@ -118,10 +118,19 @@ font-size: 0.9rem;
 margin-right: 0.5rem;
 }
 
-footer {
-  background-color: #FFC0CB;
-  color: #5D4037;
-  padding: 1rem;
-  text-align: center;
-  font-family: 'Lato-Regular';
+
+
+@media screen and (max-width: 768px) {
+  .register-container {
+    padding: 1.5rem;
+  }
+
+  .register-container h2 {
+    font-size: 2rem;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
 }

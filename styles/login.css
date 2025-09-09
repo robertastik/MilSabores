@@ -100,10 +100,14 @@ main {
   text-decoration: underline;
 }
 
-footer {
-  background-color: #FFC0CB;
-  color: #5D4037;
-  padding: 1rem;
-  text-align: center;
-  font-family: 'Lato-Regular';
+
+
+@media screen and (max-width: 768px) {
+  .login-container {
+    padding: 1.5rem;
+  }
+
+  .login-container h2 {
+    font-size: 1.5rem;
+  }
 }
