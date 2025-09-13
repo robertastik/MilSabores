@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const productTrack = document.createElement('div');
     productTrack.className = 'product-track';
 
-    // Duplicate products for seamless loop
+    
     const extendedProducts = [...products, ...products];
 
     extendedProducts.forEach(product => {
@@ -25,6 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
     productList.appendChild(productTrack);
   }
 
-  // We will use all products for the carousel
+  
   renderProducts(products);
 });
