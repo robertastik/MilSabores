@@ -25,6 +25,5 @@ document.addEventListener('DOMContentLoaded', () => {
     productList.appendChild(productTrack);
   }
 
-  
   renderProducts(products);
 });

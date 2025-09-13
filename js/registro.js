@@ -50,7 +50,8 @@ function registrarUsuario({ nombre, correo, fechaNacimiento, contrasena, codigoR
         edad,
         contrasena,
         descuentos,
-        beneficios
+        beneficios,
+        preferencias: []
     };
     usuarios.push(usuario);
     guardarUsuarios(usuarios);
