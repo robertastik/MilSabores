@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Productos - Mil Sabores</title>
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="styles/productos.css" />
+    <script src="js/header.js"></script>
+  </head>
+  <body>
+    <div id="header-placeholder"></div>
+
+    <main class="productos-main">
+      <h1>Nuestro Catálogo</h1>
+
+      <div class="filtros-container">
+        <div class="filtro-grupo">
+          <label for="filtro-tipo">Tipo de Torta:</label>
+          <select id="filtro-tipo">
+            <option value="todos">Todos</option>
+            <option value="circular">Circular</option>
+            <option value="cuadrada">Cuadrada</option>
+          </select>
+        </div>
+        <div class="filtro-grupo">
+          <label for="filtro-tamano">Tamaño:</label>
+          <select id="filtro-tamano">
+            <option value="todos">Todos</option>
+            <option value="pequeno">Pequeño (15cm / 6-8 porciones)</option>
+            <option value="mediano">Mediano (20cm / 12-15 porciones)</option>
+            <option value="grande">Grande (25cm / 20-25 porciones)</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="product-list" class="product-grid"></div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+    <script src="js/footer.js"></script>
+    <script type="module" src="js/productos.js"></script>
+  </body>
+</html>

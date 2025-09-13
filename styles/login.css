@@ -1,113 +1,74 @@
-@font-face {
-    font-family: Lato-Regular;
-    src: url('../font/Lato-Regular.ttf');
-    font-weight: 400;
-  }
-  
-@font-face {
-  font-family: Pacifico-Regular;
-  src: url('../font/Pacifico-Regular.ttf');
-  font-weight: 400;
-}
-  
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background-color: #FFF5E1;
-  color: #5D4037;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  font-family: "Lato-Regular";
-}
-
-main {
-  flex: 1;
+.login-main {
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: calc(100vh - 145px); 
   padding: 2rem;
 }
 
 .login-container {
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.8);
   padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 400px;
+  text-align: center;
 }
 
-.login-container h2 {
-  text-align: center;
-  margin-bottom: 1.5rem;
+h2 {
+  font-family: 'Pacifico-Regular', cursive;
+  font-size: 2.5rem;
   color: #5D4037;
-  font-family: 'Pacifico-Regular';
-  font-size: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .form-group {
   margin-bottom: 1.5rem;
+  text-align: left;
 }
 
 .form-group label {
   display: block;
+  font-family: 'Lato-Regular', sans-serif;
+  font-size: 1rem;
+  color: #5D4037;
   margin-bottom: 0.5rem;
-  font-weight: 500;
 }
 
 .form-group input {
   width: 100%;
   padding: 0.75rem;
   border: 1px solid #ddd;
-  border-radius: 5px;
+  border-radius: 8px;
+  font-family: 'Lato-Regular', sans-serif;
   font-size: 1rem;
+  background-color: #fff;
 }
 
-.btn {
-  width: 100%;
-  padding: 0.75rem;
+.btn-submit {
   background-color: #FFC0CB;
   color: #5D4037;
+  font-family: 'Lato-Regular', sans-serif;
+  font-size: 1.1rem;
+  padding: 0.75rem 1.5rem;
   border: none;
-  border-radius: 5px;
-  font-size: 1rem;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s;
-  font-family: 'Lato-Regular';
+  transition: background-color 0.3s ease;
+  width: 100%;
 }
 
-.btn:hover {
-  background-color: #ffa5b4;
+.btn-submit:hover {
+  background-color: #f8a7b9;
 }
 
-.login-links {
+.switch-form {
+  font-family: 'Lato-Regular', sans-serif;
   margin-top: 1.5rem;
-  text-align: center;
 }
 
-.login-links a {
-  color: #5D4037;
-  text-decoration: none;
-  font-family: 'Lato-Regular';
-}
-
-.login-links a:hover {
+.switch-form a {
+  color: #e57373;
   text-decoration: underline;
-}
-
-
-
-@media screen and (max-width: 768px) {
-  .login-container {
-    padding: 1.5rem;
-  }
-
-  .login-container h2 {
-    font-size: 1.5rem;
-  }
 }

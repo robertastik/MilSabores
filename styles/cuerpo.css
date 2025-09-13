@@ -15,3 +15,41 @@
 main {
     font-family: Lato-Regular;
 }
+
+.productos-principales {
+    padding: 2rem 0;
+    text-align: center;
+    overflow: hidden; 
+}
+
+.productos-principales h1 {
+    font-family: 'Pacifico-Regular', cursive;
+    font-size: 3rem;
+    color: #5D4037;
+    margin-bottom: 2rem;
+}
+
+.product-carousel {
+    position: relative;
+    width: 100%;
+    display: flex;
+}
+
+.product-track {
+    display: flex;
+    animation: scroll 80s linear infinite;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.product-carousel .product-card {
+    margin: 0 1rem;
+    width: 300px;
+}
