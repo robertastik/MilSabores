@@ -6,10 +6,26 @@
     <title>Perfil - Mil Sabores</title>
     <link rel="stylesheet" href="styles/main.css" />
     <link rel="stylesheet" href="styles/perfil.css" />
+    <link rel="stylesheet" href="styles/cart.css" />
     <script src="js/header.js"></script>
 </head>
 <body>
-    <div id="header-placeholder"></div>
+        <div id="header-placeholder"></div>
+
+    <div class="cart-container">
+        <div class="cart-header">
+            <h2>Tu Carrito</h2>
+            <button class="close-cart">&times;</button>
+        </div>
+        <div class="cart-items"></div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total-amount">$0</span>
+            </div>
+            <button class="checkout-btn">Finalizar Compra</button>
+        </div>
+    </div>
     <main class="perfil-main">
         <div class="perfil-container">
             <h2>Mi Perfil</h2>
@@ -48,5 +64,6 @@
     <div id="footer-placeholder"></div>
     <script src="js/footer.js"></script>
     <script src="js/perfil.js"></script>
+    <script type="module" src="js/cart.js"></script>
 </body>
 </html>

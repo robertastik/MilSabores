@@ -4,13 +4,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mil Sabores - Pastelería</title>
-    <script src="js/header.js"></script>
+    <script src="js/header.js" defer></script>
     <link rel="stylesheet" href="styles/main.css" />
     <link rel="stylesheet" href="styles/cuerpo.css" />
     <link rel="stylesheet" href="styles/productos.css" />
+    <link rel="stylesheet" href="styles/cart.css" />
   </head>
   <body>
     <div id="header-placeholder"></div>
+
+    <div class="cart-container">
+      <div class="cart-header">
+        <h2>Tu Carrito</h2>
+        <button class="close-cart">&times;</button>
+      </div>
+      <div class="cart-items"></div>
+      <div class="cart-footer">
+        <div class="cart-total">
+          <span>Total:</span>
+          <span id="cart-total-amount">$0</span>
+        </div>
+        <button class="checkout-btn">Finalizar Compra</button>
+      </div>
+    </div>
+
     <main>
       <div class="hero-main">
         <img src="images/hero-img.jpg" alt="" />
@@ -23,5 +40,6 @@
     <div id="footer-placeholder"></div>
     <script src="js/footer.js"></script>
     <script type="module" src="js/main-products.js"></script>
+    <script type="module" src="js/cart.js"></script>
   </body>
 </html>

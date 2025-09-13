@@ -3,6 +3,11 @@ import { products } from './product-data.js';
 document.addEventListener('DOMContentLoaded', () => {
   const productList = document.getElementById('featured-products');
 
+  if (!productList) {
+    console.warn('main-products: #featured-products element not found. Skipping render.');
+    return;
+  }
+
   function renderProducts(products) {
     productList.innerHTML = '';
     const productTrack = document.createElement('div');

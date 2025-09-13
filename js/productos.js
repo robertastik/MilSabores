@@ -1,4 +1,5 @@
 import { products } from './product-data.js';
+import { addToCart } from './cart.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const productList = document.getElementById('product-list');
@@ -10,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     filteredProducts.forEach(product => {
       const productCard = document.createElement('div');
       productCard.className = 'product-card';
+      productCard.dataset.id = product.id;
       productCard.innerHTML = `
         <img src="${product.image}" alt="${product.name}">
         <h3>${product.name}</h3>
@@ -23,6 +25,17 @@ document.addEventListener('DOMContentLoaded', () => {
         <button class="btn-add-cart">Añadir al Carrito</button>
       `;
       productList.appendChild(productCard);
+    });
+
+    // Add to cart event listeners
+    const addToCartButtons = document.querySelectorAll('.btn-add-cart');
+    addToCartButtons.forEach(button => {
+      button.addEventListener('click', (event) => {
+        const productCard = event.target.closest('.product-card');
+        const productId = parseInt(productCard.dataset.id);
+        const product = products.find(p => p.id === productId);
+        addToCart(product);
+      });
     });
   }
 

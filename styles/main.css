@@ -32,6 +32,11 @@ header {
   background-color: #FFC0CB;
 }
 
+/* make header a positioning context so we can absolutely center nav */
+header {
+  position: relative;
+}
+
 .titulo-header span {
   font-size: 3rem;
   font-family: 'Pacifico-Regular';
@@ -82,6 +87,13 @@ a {
 
 .show {
     display: block;
+}
+
+.navegacion-header {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .navegacion-header a {
@@ -136,6 +148,7 @@ footer {
     position: absolute;
     top: 70px;
     left: 0;
+    transform: none;
     width: 100%;
     background-color: #FFC0CB;
     padding: 1rem 0;
