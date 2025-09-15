@@ -38,7 +38,7 @@ main {
 .product-track {
     display: flex;
     animation: scroll 80s linear infinite;
-    align-items: stretch; /* make children stretch vertically to their content */
+    align-items: stretch; 
 }
 
 @keyframes scroll {
@@ -56,8 +56,8 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    overflow: visible; /* allow content to show without clipping */
-    padding: 1rem; /* match catalog card spacing */
+    overflow: visible; 
+    padding: 1rem; 
     box-sizing: border-box;
 }
 
@@ -66,4 +66,48 @@ main {
     height: 200px;
     object-fit: cover;
     display: block;
+}
+
+.sobre-nosotros-section {
+    padding: 4rem 2rem;
+    background-color: #fdf0e1;
+    text-align: center;
+    font-family: 'Lato-Regular', sans-serif;
+    scroll-margin-top: 80px; 
+}
+
+.sobre-nosotros-section h2 {
+    font-family: 'Pacifico-Regular', cursive;
+    font-size: 3rem;
+    color: #5D4037;
+    margin-bottom: 2.5rem;
+}
+
+.sobre-nosotros-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.sobre-nosotros-card {
+    background-color: #FFF5E1;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(93, 64, 55, 0.08);
+}
+
+.sobre-nosotros-card h3 {
+    font-family: 'Pacifico-Regular', cursive;
+    font-size: 1.8rem;
+    color: #5D4037;
+    margin-bottom: 1rem;
+}
+
+.sobre-nosotros-card p {
+    line-height: 1.7;
+    color: #6b4f43;
+    font-size: 1rem;
 }

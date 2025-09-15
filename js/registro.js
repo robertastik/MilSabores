@@ -23,7 +23,7 @@ function calcularEdad(fechaNacimiento) {
 
 function registrarUsuario({ nombre, correo, fechaNacimiento, contrasena, codigoRegistro }) {
     const usuarios = obtenerUsuarios();
-    // Verifica si el correo ya está registrado
+    // verificar si existe el correo
     if (usuarios.some(u => u.correo === correo)) {
         alert('El correo ya está registrado.');
         return false;
@@ -58,23 +58,41 @@ function registrarUsuario({ nombre, correo, fechaNacimiento, contrasena, codigoR
     return true;
 }
 
-document.getElementById('registro-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const nombre = document.getElementById('name').value;
-    const correo = document.getElementById('email').value;
-    const fechaNacimiento = document.getElementById('dob').value;
-    const contrasena = document.getElementById('password').value;
-    const confirmarContrasena = document.getElementById('confirm-password').value;
-    const codigoRegistro = document.getElementById('coupon').value;
+document.addEventListener('DOMContentLoaded', function() {
+    const registroForm = document.getElementById('registro-form');
+    const emailInput = document.getElementById('email');
+    const duocMessage = document.getElementById('duoc-benefit-message');
 
-    if (contrasena !== confirmarContrasena) {
-        alert('Las contraseñas no coinciden');
-        return;
+    if (registroForm) {
+        registroForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const nombre = document.getElementById('name').value;
+            const correo = document.getElementById('email').value;
+            const fechaNacimiento = document.getElementById('dob').value;
+            const contrasena = document.getElementById('password').value;
+            const confirmarContrasena = document.getElementById('confirm-password').value;
+            const codigoRegistro = document.getElementById('coupon').value;
+
+            if (contrasena !== confirmarContrasena) {
+                alert('Las contraseñas no coinciden');
+                return;
+            }
+
+            const exito = registrarUsuario({ nombre, correo, fechaNacimiento, contrasena, codigoRegistro });
+            if (exito) {
+                alert('¡Registro exitoso! Ahora puedes iniciar sesión.');
+                window.location.href = 'login.html';
+            }
+        });
     }
 
-    const exito = registrarUsuario({ nombre, correo, fechaNacimiento, contrasena, codigoRegistro });
-    if (exito) {
-        alert('¡Registro exitoso! Ahora puedes iniciar sesión.');
-        window.location.href = 'login.html';
+    if (emailInput && duocMessage) {
+        emailInput.addEventListener('input', function() {
+            if (this.value.toLowerCase().endsWith('@duocuc.cl')) {
+                duocMessage.style.display = 'block';
+            } else {
+                duocMessage.style.display = 'none';
+            }
+        });
     }
 });

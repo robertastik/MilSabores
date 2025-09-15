@@ -32,7 +32,7 @@ header {
   background-color: #FFC0CB;
 }
 
-/* make header a positioning context so we can absolutely center nav */
+
 header {
   position: relative;
 }
@@ -167,4 +167,138 @@ footer {
     display: block;
     cursor: pointer;
   }
+}
+
+
+.contacto-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.contacto-dropdown-content {
+  display: none;
+  position: absolute;
+  min-width: 240px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 120%;
+  background-color: rgba(255, 245, 238, 0.9); 
+  backdrop-filter: blur(5px);
+}
+
+.contacto-dropdown-content.show {
+  display: block;
+}
+
+.contacto-dropdown-content p {
+  font-family: 'Lato-Regular', sans-serif;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #5D4037;
+}
+
+.social-buttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.social-buttons button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0; 
+  border-radius: 50%;
+  transition: background-color 0.2s;
+  width: 42px; 
+  height: 42px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-buttons button:hover {
+  background-color: rgba(93, 64, 55, 0.1);
+}
+
+.social-buttons img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain; 
+}
+
+
+.social-buttons img[src="images/ig-png.png"] {
+  width: 58px;
+  height: 58px;
+}
+
+.social-buttons img[src="images/wsp-png.png"] {
+  width: 48px;
+  height: 48px;
+}
+
+
+.share-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none; /* Hidden by default */
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.share-overlay.visible {
+    display: flex;
+    opacity: 1;
+}
+
+.share-modal {
+    background-color: #FFF5E1;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    text-align: center;
+    position: relative;
+    width: 90%;
+    max-width: 400px;
+}
+
+.share-modal h3 {
+    font-family: 'Pacifico-Regular', cursive;
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #5D4037;
+}
+
+.close-share-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 2rem;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: #5D4037;
+}
+
+
+.benefit-message {
+  font-size: 0.85rem;
+  color: #006400; /* verde oscuro para el beneficio */
+  margin-top: 8px;
+  font-family: 'Lato-Regular', sans-serif;
+  font-weight: bold;
 }

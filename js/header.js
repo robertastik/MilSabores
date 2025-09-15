@@ -24,13 +24,15 @@ function actualizarHeaderSegunEstadoLogin() {
         }
     }
     
-    // support both class names: original .user-icon (from component) and .icono-usuario (fallback/renamed)
+   
     const iconoUsuario = document.querySelector('.icono-usuario') || document.querySelector('.user-icon');
     const contenidoDropdown = document.querySelector('.registro .dropdown-content');
 
     if (iconoUsuario && contenidoDropdown) {
         iconoUsuario.addEventListener('click', (event) => {
             event.stopPropagation();
+            // Ocultar el dropdown de contacto si está abierto
+            document.querySelector('.contacto-dropdown-content')?.classList.remove('show');
             contenidoDropdown.classList.toggle('show');
         });
 
@@ -69,6 +71,59 @@ function cargarHeader() {
                 }
             })
             .then(() => {
+                // --- Lógica para el enlace "Sobre Nosotros" ---
+                const sobreNosotrosLink = Array.from(document.querySelectorAll('.navegacion-header a'))
+                                                  .find(a => a.textContent.trim() === 'Sobre Nosotros');
+                if (sobreNosotrosLink) {
+                    // Apunta a la sección 'sobre-nosotros' en la página de inicio
+                    sobreNosotrosLink.href = 'index.html#sobre-nosotros';
+                }
+
+                // dropdown contacto
+                const contactoLink = Array.from(document.querySelectorAll('.navegacion-header a'))
+                                          .find(a => a.textContent.trim() === 'Contacto');
+
+                if (contactoLink) {
+                    contactoLink.href = '#';
+                    contactoLink.style.cursor = 'pointer';
+
+                    const dropdownContent = document.createElement('div');
+                    dropdownContent.className = 'contacto-dropdown-content';
+                    dropdownContent.innerHTML = `
+                        <p>Contáctanos en nuestras redes</p>
+                        <div class="social-buttons">
+                            <button><img src="images/fb-png.png" alt="Facebook"></button>
+                            <button><img src="images/ig-png.png" alt="Instagram"></button>
+                            <button><img src="images/wsp-png.png" alt="WhatsApp"></button>
+                            <button><img src="images/x-png.png" alt="X"></button>
+                        </div>
+                    `;
+
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'contacto-dropdown';
+                    
+                    contactoLink.parentNode.insertBefore(wrapper, contactoLink);
+                    wrapper.appendChild(contactoLink);
+                    wrapper.appendChild(dropdownContent);
+
+                    wrapper.addEventListener('click', (event) => {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        
+                        document.querySelector('.registro .dropdown-content')?.classList.remove('show');
+                        dropdownContent.classList.toggle('show');
+                    });
+
+                    dropdownContent.querySelectorAll('.social-buttons button').forEach(button => {
+                        button.addEventListener('click', (event) => {
+                            event.stopPropagation();
+                            alert('Muchas gracias!! Pronto nos pondremos en contacto contigo.');
+                            dropdownContent.classList.remove('show');
+                        });
+                    });
+                }
+            })
+            .then(() => {
                 actualizarHeaderSegunEstadoLogin();
             })
             .catch(error => {
@@ -84,6 +139,11 @@ function cargarHeader() {
     }
 }
 
-
+window.addEventListener('click', (event) => {
+    //cerrar con click afuera
+    if (!event.target.closest('.contacto-dropdown')) {
+        document.querySelector('.contacto-dropdown-content')?.classList.remove('show');
+    }
+});
 
 document.addEventListener('DOMContentLoaded', cargarHeader);
