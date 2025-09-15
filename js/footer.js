@@ -1,7 +1,7 @@
-function loadFooter() {
-    const footerPlaceholder = document.getElementById('footer-placeholder');
+function cargarFooter() {
+    const marcadorFooter = document.getElementById('footer-placeholder');
 
-    if (footerPlaceholder) {
+    if (marcadorFooter) {
         fetch('components/footer.html')
             .then(response => {
                 if (!response.ok) {
@@ -10,13 +10,13 @@ function loadFooter() {
                 return response.text();
             })
             .then(html => {
-                footerPlaceholder.innerHTML = html;
+                marcadorFooter.innerHTML = html;
             })
             .catch(error => {
                 console.error('Error loading footer:', error);
-                footerPlaceholder.innerHTML = '<p>Error loading footer.</p>';
+                marcadorFooter.innerHTML = '<p>Error loading footer.</p>';
             });
     }
 }
 
-document.addEventListener('DOMContentLoaded', loadFooter);
+document.addEventListener('DOMContentLoaded', cargarFooter);

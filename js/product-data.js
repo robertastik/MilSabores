@@ -1,4 +1,4 @@
-export const products = [
+export const productos = [
     {
       id: 1,
       name: 'Torta de Chocolate Clásica',
@@ -47,4 +47,4 @@ export const products = [
       price: 32000,
       image: 'https://cdn0.recetasgratis.net/es/posts/1/4/9/cheesecake_de_frutos_rojos_73941_orig.jpg'
     }
-  ];
+    ];

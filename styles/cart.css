@@ -81,16 +81,34 @@
     color: #6b4f43;
 }
 
-.cart-item-actions {
-    display: flex;
+.cart-quantity {
+    display: inline-flex;
     align-items: center;
     gap: 8px;
 }
 
-.cart-item-actions input {
-    width: 40px;
+.cart-quantity button {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    border: 1px solid rgba(93,64,55,0.12);
+    background: #fff;
+    color: #5D4037;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.qty-value {
+    min-width: 28px;
     text-align: center;
-    margin: 0 10px;
+    display: inline-block;
+    font-weight: 600;
+}
+
+.cart-item-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .remove-item {

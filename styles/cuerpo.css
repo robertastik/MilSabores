@@ -19,7 +19,7 @@ main {
 .productos-principales {
     padding: 2rem 0;
     text-align: center;
-    overflow: hidden; 
+    overflow: visible; 
 }
 
 .productos-principales h1 {
@@ -38,6 +38,7 @@ main {
 .product-track {
     display: flex;
     animation: scroll 80s linear infinite;
+    align-items: stretch; /* make children stretch vertically to their content */
 }
 
 @keyframes scroll {
@@ -52,4 +53,17 @@ main {
 .product-carousel .product-card {
     margin: 0 1rem;
     width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: visible; /* allow content to show without clipping */
+    padding: 1rem; /* match catalog card spacing */
+    box-sizing: border-box;
+}
+
+.product-carousel .product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
 }

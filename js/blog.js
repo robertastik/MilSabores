@@ -1,9 +1,9 @@
-import { posts } from './blog-data.js';
+import { publicaciones } from './blog-data.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const postsList = document.getElementById('posts-list');
 
-  function renderPosts(items) {
+  function renderizarPublicaciones(items) {
     postsList.innerHTML = '';
     items.forEach(p => {
       const card = document.createElement('article');
@@ -15,22 +15,22 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="meta">${p.author} · ${p.date}</div>
           <p class="excerpt">${p.excerpt}</p>
           <div class="full-content" aria-hidden="true">${p.content}</div>
-          <a href="#" class="read-more" data-id="${p.id}">Leer más</a>
+          <a href="#" class="leer-mas" data-id="${p.id}">Leer más</a>
         </div>
       `;
       postsList.appendChild(card);
     });
   }
 
-  renderPosts(posts);
+  renderizarPublicaciones(publicaciones);
 
   postsList.addEventListener('click', (e) => {
-    const btn = e.target.closest('.read-more');
+    const btn = e.target.closest('.leer-mas');
     if (!btn) return;
     e.preventDefault();
     const id = parseInt(btn.dataset.id);
-    const post = posts.find(x => x.id === id);
-    if (post) {
+    const publicacion = publicaciones.find(x => x.id === id);
+    if (publicacion) {
       const card = btn.closest('.post-card');
       const full = card.querySelector('.full-content');
       if (!full) return;

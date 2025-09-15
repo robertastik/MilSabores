@@ -1,68 +1,70 @@
-import { products } from './product-data.js';
-import { addToCart } from './cart.js';
+import { productos } from './product-data.js';
+import { agregarAlCarrito } from './cart.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const productList = document.getElementById('product-list');
   const filtroTipo = document.getElementById('filtro-tipo');
   const filtroTamano = document.getElementById('filtro-tamano');
 
-  function renderProducts(filteredProducts) {
+  function renderizarProductos(productosFiltrados) {
     productList.innerHTML = '';
-    filteredProducts.forEach(product => {
-      const productCard = document.createElement('div');
-      productCard.className = 'product-card';
-      productCard.dataset.id = product.id;
-      productCard.innerHTML = `
-        <img src="${product.image}" alt="${product.name}">
-        <h3>${product.name}</h3>
-        <p>Tipo: ${product.type}</p>
-        <p>Tamaño: ${product.size}</p>
-        <p class="price">$${product.price.toLocaleString('es-CL')}</p>
-        <div class="custom-message">
-          <label for="message-${product.id}">Mensaje Especial:</label>
-          <input type="text" id="message-${product.id}" placeholder="¡Feliz Cumpleaños!">
+    productosFiltrados.forEach(producto => {
+      const tarjeta = document.createElement('div');
+      tarjeta.className = 'product-card';
+      tarjeta.dataset.id = producto.id;
+      tarjeta.innerHTML = `
+        <img src="${producto.image}" alt="${producto.name}">
+        <div class="card-body">
+          <h3>${producto.name}</h3>
+          <p>Tipo: ${producto.type}</p>
+          <p>Tamaño: ${producto.size}</p>
+          <p class="price">$${producto.price.toLocaleString('es-CL')}</p>
         </div>
-        <button class="btn-add-cart">Añadir al Carrito</button>
+        <div class="card-footer">
+          <div class="custom-message">
+            <label for="message-${producto.id}">Mensaje Especial:</label>
+            <input type="text" id="message-${producto.id}" placeholder="¡Feliz Cumpleaños!">
+          </div>
+          <button class="btn-add-cart">Añadir al Carrito</button>
+        </div>
       `;
-      productList.appendChild(productCard);
+      productList.appendChild(tarjeta);
     });
 
-    // Add to cart event listeners
-    const addToCartButtons = document.querySelectorAll('.btn-add-cart');
-    addToCartButtons.forEach(button => {
-      button.addEventListener('click', (event) => {
-        const productCard = event.target.closest('.product-card');
-        const productId = parseInt(productCard.dataset.id);
-        const product = products.find(p => p.id === productId);
-        addToCart(product);
+    const botonesAgregar = document.querySelectorAll('.btn-add-cart');
+    botonesAgregar.forEach(boton => {
+      boton.addEventListener('click', (event) => {
+        const tarjetaProducto = event.target.closest('.product-card');
+        const productoId = parseInt(tarjetaProducto.dataset.id);
+        const producto = productos.find(p => p.id === productoId);
+        agregarAlCarrito(producto);
       });
     });
   }
 
-  function filterProducts() {
+  function filtrarProductos() {
     const tipo = filtroTipo.value;
     const tamano = filtroTamano.value;
 
-    let filteredProducts = products;
+    let productosFiltrados = productos;
 
     if (tipo !== 'todos') {
-      filteredProducts = filteredProducts.filter(p => p.type === tipo);
+      productosFiltrados = productosFiltrados.filter(p => p.type === tipo);
     }
 
     if (tamano !== 'todos') {
-      filteredProducts = filteredProducts.filter(p => p.size === tamano);
+      productosFiltrados = productosFiltrados.filter(p => p.size === tamano);
     }
 
-    renderProducts(filteredProducts);
+    renderizarProductos(productosFiltrados);
   }
 
   if (filtroTipo && filtroTamano) {
-    filtroTipo.addEventListener('change', filterProducts);
-    filtroTamano.addEventListener('change', filterProducts);
+  filtroTipo.addEventListener('change', filtrarProductos);
+  filtroTamano.addEventListener('change', filtrarProductos);
   }
 
-  // Initial render
   if(productList) {
-    renderProducts(products);
+    renderizarProductos(productos);
   }
 });

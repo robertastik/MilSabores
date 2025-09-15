@@ -1,4 +1,4 @@
-export const posts = [
+export const publicaciones = [
   {
     id: 1,
     title: 'Cómo hornear la torta perfecta',

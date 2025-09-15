@@ -27,22 +27,22 @@ document.addEventListener('DOMContentLoaded', () => {
         return false;
     }
 
-    let currentUser = obtenerUsuarioActual();
-    if (!currentUser) {
+    let usuarioActual = obtenerUsuarioActual();
+    if (!usuarioActual) {
         alert('Debes iniciar sesión para ver tu perfil.');
         window.location.href = 'login.html';
         return;
     }
 
 
-    if (!currentUser.preferencias || !Array.isArray(currentUser.preferencias)) {
-        currentUser.preferencias = [];
+    if (!usuarioActual.preferencias || !Array.isArray(usuarioActual.preferencias)) {
+        usuarioActual.preferencias = [];
     }
 
     const perfilForm = document.getElementById('perfil-form');
     const nombreInput = document.getElementById('name');
     const emailInput = document.getElementById('email');
-    const dobInput = document.getElementById('dob');
+    const fechanacimiento = document.getElementById('dob');
     const passwordInput = document.getElementById('password');
     const listaPreferencias = document.getElementById('lista-preferencias');
     const agregarPreferenciaForm = document.getElementById('agregar-preferencia-form');
@@ -50,17 +50,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     
     function popularDatosPerfil() {
-        if (!currentUser) return;
-        nombreInput.value = currentUser.nombre;
-        emailInput.value = currentUser.correo;
-        dobInput.value = currentUser.fechaNacimiento;
+        if (!usuarioActual) return;
+        nombreInput.value = usuarioActual.nombre;
+        emailInput.value = usuarioActual.correo;
+        fechanacimiento.value = usuarioActual.fechaNacimiento;
         renderizarPreferencias();
     }
 
     function renderizarPreferencias() {
         listaPreferencias.innerHTML = '';
-        if (currentUser.preferencias && currentUser.preferencias.length > 0) {
-            currentUser.preferencias.forEach((pref, index) => {
+        if (usuarioActual.preferencias && usuarioActual.preferencias.length > 0) {
+            usuarioActual.preferencias.forEach((pref, index) => {
                 const li = document.createElement('li');
                 
                 const span = document.createElement('span');
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             const li = document.createElement('li');
             li.textContent = 'No tienes preferencias guardadas.';
-            li.style.justifyContent = 'center'; // Center the text
+            li.style.justifyContent = 'center';
             listaPreferencias.appendChild(li);
         }
     }
@@ -87,15 +87,15 @@ document.addEventListener('DOMContentLoaded', () => {
     function handleUpdateProfile(e) {
         e.preventDefault();
 
-        currentUser.nombre = nombreInput.value;
-        currentUser.fechaNacimiento = dobInput.value;
+    usuarioActual.nombre = nombreInput.value;
+    usuarioActual.fechaNacimiento = fechanacimiento.value;
         
         const nuevaContrasena = passwordInput.value;
         if (nuevaContrasena) {
-            currentUser.contrasena = nuevaContrasena;
+            usuarioActual.contrasena = nuevaContrasena;
         }
 
-        if (guardarUsuarioActual(currentUser)) {
+        if (guardarUsuarioActual(usuarioActual)) {
             alert('Perfil actualizado con éxito.');
             passwordInput.value = ''; 
         } else {
@@ -108,12 +108,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const nuevaPreferencia = nuevaPreferenciaInput.value.trim();
 
         if (nuevaPreferencia) {
-            currentUser.preferencias.push(nuevaPreferencia);
-            if (guardarUsuarioActual(currentUser)) {
+            usuarioActual.preferencias.push(nuevaPreferencia);
+            if (guardarUsuarioActual(usuarioActual)) {
                 renderizarPreferencias();
                 nuevaPreferenciaInput.value = '';
             } else {
-                currentUser.preferencias.pop(); // Rollback
+                usuarioActual.preferencias.pop(); // Rollback
                 alert('Error al guardar la preferencia.');
             }
         }
@@ -122,10 +122,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function handleDeletePreference(e) {
         if (e.target.classList.contains('btn-eliminar-pref')) {
             const index = parseInt(e.target.dataset.index, 10);
-            currentUser.preferencias.splice(index, 1);
-            if (!guardarUsuarioActual(currentUser)) {
+            usuarioActual.preferencias.splice(index, 1);
+            if (!guardarUsuarioActual(usuarioActual)) {
                 alert('Error al eliminar la preferencia.');
-                currentUser = obtenerUsuarioActual(); 
+                usuarioActual = obtenerUsuarioActual(); 
             }
             renderizarPreferencias();
         }

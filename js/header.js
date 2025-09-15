@@ -1,21 +1,21 @@
-function updateHeaderBasedOnLoginStatus() {
-    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+function actualizarHeaderSegunEstadoLogin() {
+    const estaLogueado = localStorage.getItem('isLoggedIn') === 'true';
     const registroDiv = document.querySelector('.registro');
- 
-    if (isLoggedIn) {
+
+    if (estaLogueado) {
         registroDiv.innerHTML = `
             <div class="dropdown">
-                <span class="user-icon"><img src="images/user (1).svg" alt="User Icon"></span>
+                <span class="icono-usuario"><img src="images/user (1).svg" alt="User Icon"></span>
                 <div class="dropdown-content" id="dropdown-content">
                     <a href="perfil.html">Perfil</a>
                     <a href="#" id="cerrar-sesion">Cerrar Sesión</a>
                 </div>
             </div>
         `;
- 
-        const cerrarSesionLink = document.getElementById('cerrar-sesion');
-        if (cerrarSesionLink) {
-            cerrarSesionLink.addEventListener('click', (e) => {
+
+        const enlaceCerrarSesion = document.getElementById('cerrar-sesion');
+        if (enlaceCerrarSesion) {
+            enlaceCerrarSesion.addEventListener('click', (e) => {
                 e.preventDefault();
                 localStorage.removeItem('isLoggedIn');
                 localStorage.removeItem('currentUser');
@@ -24,30 +24,31 @@ function updateHeaderBasedOnLoginStatus() {
         }
     }
     
-    const userIcon = document.querySelector('.user-icon');
-    const dropdownContent = document.querySelector('.registro .dropdown-content');
- 
-    if (userIcon && dropdownContent) {
-        userIcon.addEventListener('click', (event) => {
+    // support both class names: original .user-icon (from component) and .icono-usuario (fallback/renamed)
+    const iconoUsuario = document.querySelector('.icono-usuario') || document.querySelector('.user-icon');
+    const contenidoDropdown = document.querySelector('.registro .dropdown-content');
+
+    if (iconoUsuario && contenidoDropdown) {
+        iconoUsuario.addEventListener('click', (event) => {
             event.stopPropagation();
-            dropdownContent.classList.toggle('show');
+            contenidoDropdown.classList.toggle('show');
         });
- 
+
         window.addEventListener('click', (event) => {
             
-            if (!userIcon.contains(event.target)) {
-                if (dropdownContent.classList.contains('show')) {
-                    dropdownContent.classList.remove('show');
+            if (!iconoUsuario.contains(event.target)) {
+                if (contenidoDropdown.classList.contains('show')) {
+                    contenidoDropdown.classList.remove('show');
                 }
             }
         });
     }
 }
 
-function loadHeader() {
-    const headerPlaceholder = document.getElementById('header-placeholder');
+function cargarHeader() {
+    const marcadorHeader = document.getElementById('header-placeholder');
 
-    if (headerPlaceholder) {
+    if (marcadorHeader) {
         fetch('components/header.html')
             .then(response => {
                 if (!response.ok) {
@@ -56,23 +57,23 @@ function loadHeader() {
                 return response.text();
             })
             .then(html => {
-                headerPlaceholder.innerHTML = html;
+                marcadorHeader.innerHTML = html;
 
-                const hamburgerMenu = document.querySelector('.hamburger-menu');
+                const menuHamburguesa = document.querySelector('.hamburger-menu');
                 const navegacionHeader = document.querySelector('.navegacion-header');
 
-                if (hamburgerMenu && navegacionHeader) {
-                    hamburgerMenu.addEventListener('click', () => {
+                if (menuHamburguesa && navegacionHeader) {
+                    menuHamburguesa.addEventListener('click', () => {
                         navegacionHeader.classList.toggle('show');
                     });
                 }
             })
             .then(() => {
-                updateHeaderBasedOnLoginStatus();
+                actualizarHeaderSegunEstadoLogin();
             })
             .catch(error => {
                 console.error('Error loading header:', error);
-                headerPlaceholder.innerHTML = `
+                marcadorHeader.innerHTML = `
                     <header>
                         <div class="titulo-header">
                             <span><a href="index.html">Mil Sabores</a></span>
@@ -85,4 +86,4 @@ function loadHeader() {
 
 
 
-document.addEventListener('DOMContentLoaded', loadHeader);
+document.addEventListener('DOMContentLoaded', cargarHeader);

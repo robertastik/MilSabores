@@ -1,25 +1,24 @@
 
-import { products } from './product-data.js';
+import { productos } from './product-data.js';
 
-// Cart state and helpers at module (top) level so other modules can import addToCart
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
+let carrito = JSON.parse(localStorage.getItem('cart')) || [];
 
-function saveCart() {
-    localStorage.setItem('cart', JSON.stringify(cart));
+function guardarCarrito() {
+    localStorage.setItem('cart', JSON.stringify(carrito));
 }
 
-export function addToCart(product) {
-    const existingProduct = cart.find(item => item.id === product.id);
-    if (existingProduct) {
-        existingProduct.quantity++;
+export function agregarAlCarrito(producto) {
+    const productoExistente = carrito.find(item => item.id === producto.id);
+    if (productoExistente) {
+        productoExistente.quantity += 1;
     } else {
-        cart.push({ ...product, quantity: 1 });
+        carrito.push({ ...producto, quantity: 1 });
     }
-    saveCart();
-    renderCart();
+    guardarCarrito();
+    renderizarCarrito();
 }
 
-function renderCart() {
+function renderizarCarrito() {
     const cartItemsContainer = document.querySelector('.cart-items');
     const cartTotalAmount = document.getElementById('cart-total-amount');
     const cartCount = document.querySelector('.cart-count');
@@ -27,7 +26,7 @@ function renderCart() {
     if (!cartItemsContainer || !cartTotalAmount) return;
 
     cartItemsContainer.innerHTML = '';
-    if (cart.length === 0) {
+    if (carrito.length === 0) {
         const empty = document.createElement('div');
         empty.className = 'cart-empty';
         empty.textContent = 'Tu carrito está vacío.';
@@ -36,7 +35,7 @@ function renderCart() {
     let total = 0;
     let totalItems = 0;
 
-    cart.forEach(item => {
+    carrito.forEach(item => {
         const cartItem = document.createElement('div');
         cartItem.className = 'cart-item';
         cartItem.innerHTML = `
@@ -44,7 +43,11 @@ function renderCart() {
             <div class="cart-item-details">
                 <h3>${item.name}</h3>
                 <p>Precio: ${item.price.toLocaleString('es-CL')}</p>
-                <p>Cantidad: ${item.quantity}</p>
+                <div class="cart-quantity">
+                    <button class="qty-decrease" data-id="${item.id}">-</button>
+                    <span class="qty-value" data-id="${item.id}">${item.quantity}</span>
+                    <button class="qty-increase" data-id="${item.id}">+</button>
+                </div>
             </div>
             <div class="cart-item-actions">
                 <button class="remove-item" data-id="${item.id}">&times;</button>
@@ -58,23 +61,33 @@ function renderCart() {
     cartTotalAmount.textContent = `${total.toLocaleString('es-CL')}`;
     if (cartCount) cartCount.textContent = totalItems;
 
-    // Add event listeners to remove buttons
     const removeButtons = document.querySelectorAll('.remove-item');
     removeButtons.forEach(button => {
         button.addEventListener('click', (event) => {
             const productId = parseInt(event.target.dataset.id);
-            removeFromCart(productId);
+            eliminarDelCarrito(productId);
         });
     });
+
 }
 
-function removeFromCart(productId) {
-    cart = cart.filter(item => item.id !== productId);
-    saveCart();
-    renderCart();
+function eliminarDelCarrito(productId) {
+    carrito = carrito.filter(item => item.id !== productId);
+    guardarCarrito();
+    renderizarCarrito();
 }
 
-// DOM ready: attach UI listeners that depend on elements
+function actualizarCantidad(productId, delta) {
+    const index = carrito.findIndex(i => i.id === productId);
+    if (index === -1) return;
+    carrito[index].quantity += delta;
+    if (carrito[index].quantity <= 0) {
+        carrito.splice(index, 1);
+    }
+    guardarCarrito();
+    renderizarCarrito();
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const cartContainer = document.querySelector('.cart-container');
     const cartIcon = document.querySelector('.carrito');
@@ -92,35 +105,45 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Initial render
-    renderCart();
+    const cartItems = document.querySelector('.cart-items');
+    if (cartItems) {
+        cartItems.addEventListener('click', (event) => {
+            const dec = event.target.closest && event.target.closest('.qty-decrease');
+            const inc = event.target.closest && event.target.closest('.qty-increase');
+            if (dec) {
+                const id = parseInt(dec.dataset.id, 10);
+                actualizarCantidad(id, -1);
+            } else if (inc) {
+                const id = parseInt(inc.dataset.id, 10);
+                actualizarCantidad(id, 1);
+            }
+        });
+    }
+
+    renderizarCarrito();
 });
 
-// Event delegation: handle clicks on .carrito even if header is injected later
 document.addEventListener('click', (event) => {
     const clickedCart = event.target.closest && event.target.closest('.carrito');
     if (clickedCart) {
         const cartContainer = document.querySelector('.cart-container');
         if (cartContainer) {
             cartContainer.classList.add('open');
-            // ensure cart content is up-to-date when opening
-            renderCart();
+            renderizarCarrito();
         }
     }
 });
 
-// Watch for header injection so we can update the cart count when the header (and .cart-count) appears
 const observer = new MutationObserver((mutations) => {
     for (const m of mutations) {
         for (const node of m.addedNodes) {
             if (!(node instanceof HTMLElement)) continue;
             if (node.classList && node.classList.contains('carrito')) {
-                // header inserted with .carrito
-                renderCart();
+                renderizarCarrito();
                 return;
             }
             if (node.querySelector && node.querySelector('.cart-count')) {
-                renderCart();
+                renderizarCarrito();
                 return;
             }
         }

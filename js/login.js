@@ -7,18 +7,18 @@ function iniciarSesion(correo, contrasena) {
     const usuario = usuarios.find(u => u.correo === correo && u.contrasena === contrasena);
 
     if (usuario) {
-        mostrarMensaje('Sesión iniciada con éxito');
+        mostrarAlerta('Sesión iniciada con éxito');
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('currentUser', usuario.correo);
         window.location.href = 'index.html';    
         return true;
     } else {
-        mostrarMensaje('Error: email o contraseña incorrectos');
+        mostrarAlerta('Error: email o contraseña incorrectos');
         return false;
     }
 }
 
-function mostrarMensaje(mensaje) {
+function mostrarAlerta(mensaje) {
     alert(mensaje); 
 }
 
